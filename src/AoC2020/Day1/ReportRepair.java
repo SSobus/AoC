@@ -24,6 +24,7 @@ public class ReportRepair {
      */
     private static void Part1(List<Integer> integers) {
         long start = System.nanoTime();
+        System.out.println("Part 1:");
 
         boolean finished = false;
         for (int i = 0; i < integers.size() && !finished; i++) {
@@ -59,6 +60,7 @@ public class ReportRepair {
      */
     private static void Part2(List<Integer> integers) {
         long start = System.nanoTime();
+        System.out.println("Part 2:");
 
         boolean finished = false;
         for (int i = 0; i < integers.size() && !finished; i++) {
