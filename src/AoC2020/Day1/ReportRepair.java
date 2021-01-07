@@ -1,41 +1,64 @@
 package AoC2020.Day1;
 
+import Utils.LoadFile;
+
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Time;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ReportRepair {
 
 
-    public static void main(String[] args) throws IOException {
-        Path filePath = Paths.get("src/AoC2020/Day1/numbers.txt");
-        Scanner scanner = new Scanner(filePath);
-        List<Integer> integers = new ArrayList<>();
+    public static void runDay() throws IOException {
+        System.out.println("2020 - Day 1 *********************");
+        List<Integer> integers = LoadFile.LoadIntegers("src/AoC2020/Day1/numbers.txt");
 
-        while (scanner.hasNext()) {
-            if (scanner.hasNextInt()) {
-                integers.add(scanner.nextInt());
-            } else {
-                scanner.next();
-            }
-        }
         integers.sort(Integer::compareTo);
 
-        //2 numbers
-        FindTwo(integers);
-
-        //three numbers
-        FindThree(integers);
+        Part1(integers);//Part 1
+        Part2(integers);//Part 2
     }
 
-    private static void FindThree(List<Integer> integers) {
-        Instant before = Instant.now();
+    /**
+     * Find the Product of two numbers whose sum is 2020
+     * @param integers List of integers to search through
+     */
+    private static void Part1(List<Integer> integers) {
+        long start = System.nanoTime();
+
+        boolean finished = false;
+        for (int i = 0; i < integers.size() && !finished; i++) {
+
+            int secondIndex = integers.size() - 1;
+
+            boolean searching = true;
+            while (searching) {
+                Integer first = integers.get(i);
+                Integer second = integers.get(secondIndex);
+
+                if (first + second == 2020) {
+                    System.out.format("Numbers: %d, %d",first, second).println();
+                    System.out.format("Total Product: %d", first * second).println();
+                    finished = true;
+                    break;
+                } else if (first + second > 2020) {
+                    secondIndex--;
+                } else {
+                    searching = false;
+                }
+            }
+        }
+
+        long finish = System.nanoTime();
+        long delta = finish - start;
+        System.out.println(delta);
+    }
+
+    /**
+     * Find the Product of three numbers whose sum is 2020
+     * @param integers List of Integers to search through
+     */
+    private static void Part2(List<Integer> integers) {
+        long start = System.nanoTime();
 
         boolean finished = false;
         for (int i = 0; i < integers.size() && !finished; i++) {
@@ -65,39 +88,10 @@ public class ReportRepair {
             }
         }
 
-        Instant after = Instant.now();
-        long delta = Duration.between(before, after).toMillis();
+        long finish = System.nanoTime();
+        long delta = finish - start;
         System.out.println(delta);
     }
 
-    private static void FindTwo(List<Integer> integers) {
-        Instant before = Instant.now();
 
-        boolean finished = false;
-        for (int i = 0; i < integers.size() && !finished; i++) {
-
-            int secondIndex = integers.size() - 1;
-
-            boolean searching = true;
-            while (searching) {
-                Integer first = integers.get(i);
-                Integer second = integers.get(secondIndex);
-
-                if (first + second == 2020) {
-                    System.out.format("Numbers: %d, %d",first, second).println();
-                    System.out.format("Total Product: %d", first * second).println();
-                    finished = true;
-                    break;
-                } else if (first + second > 2020) {
-                    secondIndex--;
-                } else {
-                    searching = false;
-                }
-            }
-        }
-
-        Instant after = Instant.now();
-        long delta = Duration.between(before, after).toMillis();
-        System.out.println(delta);
-    }
 }
