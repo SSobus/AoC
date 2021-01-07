@@ -29,4 +29,21 @@ public class LoadFile {
 
         return integers;
     }
+
+    public static List<String> LoadStrings(String source) throws IOException {
+        Path filePath = getPath(source);
+
+        Scanner scanner = new Scanner(filePath);
+
+        List<String> strings = new ArrayList<>();
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                strings.add(scanner.next());
+            } else {
+                scanner.next();
+            }
+        }
+
+        return strings;
+    }
 }
