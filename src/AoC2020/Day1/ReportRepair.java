@@ -51,7 +51,7 @@ public class ReportRepair {
 
         long finish = System.nanoTime();
         long delta = finish - start;
-        System.out.println(delta);
+        System.out.println("Total Time: " + delta + "ns");
     }
 
     /**
@@ -92,7 +92,7 @@ public class ReportRepair {
 
         long finish = System.nanoTime();
         long delta = finish - start;
-        System.out.println(delta);
+        System.out.println("Total Time: " + delta + "ns");
     }
 
 

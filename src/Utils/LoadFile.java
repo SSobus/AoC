@@ -37,8 +37,8 @@ public class LoadFile {
 
         List<String> strings = new ArrayList<>();
         while (scanner.hasNext()) {
-            if (scanner.hasNextInt()) {
-                strings.add(scanner.next());
+            if (scanner.hasNextLine()) {
+                strings.add(scanner.nextLine());
             } else {
                 scanner.next();
             }
