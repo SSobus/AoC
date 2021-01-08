@@ -1,10 +1,8 @@
 package AoC2020.Day3;
 
-import AoC2020.Day2.PasswordInformation;
 import Utils.LoadFile;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class TobogganTrajectory {
