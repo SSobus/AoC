@@ -47,7 +47,7 @@ public class PasswordPhilosophy {
      * 1-3 b: cdefg is invalid: neither position 1 nor position 3 contains b.
      * 2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
      *
-     * @param passwords
+     * @param passwords list of PasswordInformation to search for valid passwords
      */
     private static void Part2(List<PasswordInformation> passwords) {
         System.out.println("Part 2:");

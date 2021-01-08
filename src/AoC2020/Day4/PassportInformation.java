@@ -2,13 +2,13 @@ package AoC2020.Day4;
 
 public class PassportInformation {
     //byr (Birth Year)
-    Integer birthYear;
+    String birthYear;
     //    iyr (Issue Year)
-    Integer issueYear;
+    String issueYear;
     //    eyr (Expiration Year)
-    Integer expirationYear;
+    String expirationYear;
     //    hgt (Height)
-    Integer height;
+    String height;
     //    hcl (Hair Color)
     String hairColor;
     //    ecl (Eye Color)
@@ -16,12 +16,12 @@ public class PassportInformation {
     //    pid (Passport ID)
     String passportId;
     //    cid (Country ID)
-    Integer countryId;
+    String countryId;
 
     public PassportInformation() {
     }
 
-    public PassportInformation(Integer birthYear, Integer issueYear, Integer expirationYear, Integer height, String hairColor, String eyeColor, String passportId, Integer countryId) {
+    public PassportInformation(String birthYear, String issueYear, String expirationYear, String height, String hairColor, String eyeColor, String passportId, String countryId) {
         this.birthYear = birthYear;
         this.issueYear = issueYear;
         this.expirationYear = expirationYear;
@@ -32,35 +32,35 @@ public class PassportInformation {
         this.countryId = countryId;
     }
 
-    public Integer getBirthYear() {
+    public String getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(Integer birthYear) {
+    public void setBirthYear(String birthYear) {
         this.birthYear = birthYear;
     }
 
-    public Integer getIssueYear() {
+    public String getIssueYear() {
         return issueYear;
     }
 
-    public void setIssueYear(Integer issueYear) {
+    public void setIssueYear(String issueYear) {
         this.issueYear = issueYear;
     }
 
-    public Integer getExpirationYear() {
+    public String getExpirationYear() {
         return expirationYear;
     }
 
-    public void setExpirationYear(Integer expirationYear) {
+    public void setExpirationYear(String expirationYear) {
         this.expirationYear = expirationYear;
     }
 
-    public Integer getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
@@ -88,11 +88,11 @@ public class PassportInformation {
         this.passportId = passportId;
     }
 
-    public Integer getCountryId() {
+    public String getCountryId() {
         return countryId;
     }
 
-    public void setCountryId(Integer countryId) {
+    public void setCountryId(String countryId) {
         this.countryId = countryId;
     }
 

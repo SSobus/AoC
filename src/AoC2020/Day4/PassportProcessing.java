@@ -54,36 +54,24 @@ public class PassportProcessing {
 
             String key = "";
             String value = "";
-            Integer intValue = null;
 
             if (line.length() > 0) {
                 key = line.substring(0, line.indexOf(":"));
                 value = line.substring(line.indexOf(":") + 1);
-
-                try {
-                    value = value.replace("cm", "");
-                    value = value.replace("in", "");
-                    intValue = Integer.parseInt(value);
-                } catch (NumberFormatException e) {
-                    intValue = null;
-                }
-
             }
 
             switch (key) {
                 case "byr":
-                    pi.setBirthYear(intValue);
+                    pi.setBirthYear(value);
                     break;
                 case "iyr":
-                    pi.setIssueYear(intValue);
+                    pi.setIssueYear(value);
                     break;
                 case "eyr":
-                    pi.setExpirationYear(Integer.parseInt(value));
+                    pi.setExpirationYear(value);
                     break;
                 case "hgt":
-                    value = value.replace("cm", "");
-                    value = value.replace("in", "");
-                    pi.setHeight(Integer.parseInt(value));
+                    pi.setHeight(value);
                     break;
                 case "hcl":
                     pi.setHairColor(value);
@@ -95,12 +83,11 @@ public class PassportProcessing {
                     pi.setPassportId(value);
                     break;
                 case "cid":
-                    pi.setCountryId(intValue);
+                    pi.setCountryId(value);
                     break;
                 default: {
                     passportInformations.add(pi);
                     pi = new PassportInformation();
-
                     break;
                 }
 
