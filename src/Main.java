@@ -1,6 +1,7 @@
 import AoC2020.Day1.ReportRepair;
 import AoC2020.Day2.PasswordPhilosophy;
 import AoC2020.Day3.TobogganTrajectory;
+import AoC2020.Day4.PassportProcessing;
 
 import java.io.IOException;
 
@@ -10,5 +11,6 @@ public class Main {
         ReportRepair.runDay(); //2020 - Day 1
         PasswordPhilosophy.runDay(); //2020 - Day 2
         TobogganTrajectory.runDay(); //2020 - Day 3
+        PassportProcessing.runDay(); //2020 - Day 4
     }
 }

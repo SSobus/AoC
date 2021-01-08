@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,4 +47,22 @@ public class LoadFile {
 
         return strings;
     }
+
+    public static List<String> LoadWords(String source, String delimiter) throws IOException {
+        Path filePath = getPath(source);
+
+        Scanner scanner = new Scanner(filePath);
+
+        List<String> strings = new ArrayList<>();
+        while (scanner.hasNext()) {
+            if (scanner.hasNextLine()) {
+                strings.addAll(Arrays.asList(scanner.nextLine().split(delimiter)));
+            } else {
+                scanner.next();
+            }
+        }
+
+        return strings;
+    }
+
 }
