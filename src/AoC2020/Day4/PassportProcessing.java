@@ -45,7 +45,6 @@ public class PassportProcessing {
         System.out.println("Total Time: " + delta + "ns");
     }
 
-    //TODO: Refactor, Make this better, maybe a tool can help
     private static List<PassportInformation> createPassports(List<String> passports) {
         List<PassportInformation> passportInformations = new ArrayList<>();
 
@@ -61,36 +60,18 @@ public class PassportProcessing {
             }
 
             switch (key) {
-                case "byr":
-                    pi.setBirthYear(value);
-                    break;
-                case "iyr":
-                    pi.setIssueYear(value);
-                    break;
-                case "eyr":
-                    pi.setExpirationYear(value);
-                    break;
-                case "hgt":
-                    pi.setHeight(value);
-                    break;
-                case "hcl":
-                    pi.setHairColor(value);
-                    break;
-                case "ecl":
-                    pi.setEyeColor(value);
-                    break;
-                case "pid":
-                    pi.setPassportId(value);
-                    break;
-                case "cid":
-                    pi.setCountryId(value);
-                    break;
-                default: {
+                case "byr" -> pi.setBirthYear(value);
+                case "iyr" -> pi.setIssueYear(value);
+                case "eyr" -> pi.setExpirationYear(value);
+                case "hgt" -> pi.setHeight(value);
+                case "hcl" -> pi.setHairColor(value);
+                case "ecl" -> pi.setEyeColor(value);
+                case "pid" -> pi.setPassportId(value);
+                case "cid" -> pi.setCountryId(value);
+                default -> {
                     passportInformations.add(pi);
                     pi = new PassportInformation();
-                    break;
                 }
-
             }
         }
         passportInformations.add(pi);

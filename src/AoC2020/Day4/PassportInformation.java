@@ -2,21 +2,21 @@ package AoC2020.Day4;
 
 public class PassportInformation {
     //byr (Birth Year)
-    String birthYear;
+    private String birthYear;
     //    iyr (Issue Year)
-    String issueYear;
+    private String issueYear;
     //    eyr (Expiration Year)
-    String expirationYear;
+    private String expirationYear;
     //    hgt (Height)
-    String height;
+    private String height;
     //    hcl (Hair Color)
-    String hairColor;
+    private String hairColor;
     //    ecl (Eye Color)
-    String eyeColor;
+    private String eyeColor;
     //    pid (Passport ID)
-    String passportId;
+    private String passportId;
     //    cid (Country ID)
-    String countryId;
+    private String countryId;
 
     public PassportInformation() {
     }
