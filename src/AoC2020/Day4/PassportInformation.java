@@ -1,5 +1,7 @@
 package AoC2020.Day4;
 
+import java.util.Arrays;
+
 public class PassportInformation {
     //byr (Birth Year)
     private String birthYear;
@@ -98,5 +100,75 @@ public class PassportInformation {
 
     public Boolean isValid() {
         return this.birthYear != null && this.issueYear != null && this.expirationYear != null && this.height != null && this.hairColor != null && this.eyeColor != null && this.passportId != null;
+    }
+
+    public Boolean isValidContent() {
+        return isValidBirthYear() && isValidIssueYear() && isValidExpirationYear() && isValidHeight() && isValidHairColor() && isValidEyeColor() && isValidPassportId();
+    }
+
+
+    public Boolean isValidBirthYear() {
+        try {
+            int year = Integer.parseInt(this.birthYear);
+            return year >= 1920 && year <= 2002;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public Boolean isValidIssueYear() {
+        try {
+            int year = Integer.parseInt(this.issueYear);
+            return year >= 2010 && year <= 2020;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public Boolean isValidExpirationYear() {
+        try {
+            int year = Integer.parseInt(this.expirationYear);
+            return year >= 2020 && year <= 2030;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    public Boolean isValidHeight() {
+        try {
+            int intValue;
+
+            if (this.height.contains("cm")) {
+                String value = this.height.replace("cm", "");
+                intValue = Integer.parseInt(value);
+
+                return intValue >= 150 && intValue <= 193;
+            }
+
+            if (this.height.contains("in")) {
+                String value = this.height.replace("in", "");
+                intValue = Integer.parseInt(value);
+
+                return intValue >= 59 && intValue <= 76;
+            }
+
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return false;
+    }
+
+    public Boolean isValidHairColor() {
+        return this.hairColor.matches("^#([a-fA-F0-9]{6})$");
+    }
+
+    private static final String[] validEyeColors = new String[]{"amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
+    public Boolean isValidEyeColor() {
+        return Arrays.stream(validEyeColors).anyMatch(this.eyeColor::equals);
+    }
+
+    public Boolean isValidPassportId() {
+        return this.passportId.matches("^\\d{9}$");
     }
 }

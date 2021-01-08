@@ -14,7 +14,7 @@ public class PassportProcessing {
         List<PassportInformation> info = createPassports(words);
 
         Part1(info);//Part 1
-        Part2();//Part 2
+        Part2(info);//Part 2
     }
 
     public static void Part1(List<PassportInformation> passports) {
@@ -36,9 +36,19 @@ public class PassportProcessing {
         System.out.println("Total Time: " + delta + "ns");
     }
 
-    public static void Part2() {
+    public static void Part2(List<PassportInformation> passports) {
         System.out.println("Part 2:");
         long start = System.nanoTime();
+
+        int validCount = 0;
+
+        for (PassportInformation pi : passports) {
+            if (pi.isValid() && pi.isValidContent()) {
+                validCount++;
+            }
+        }
+
+        System.out.println("Valid Passports: " + validCount);
 
         long finish = System.nanoTime();
         long delta = finish - start;
