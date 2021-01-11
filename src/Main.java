@@ -4,6 +4,7 @@ import AoC2020.Day03.TobogganTrajectory;
 import AoC2020.Day04.PassportProcessing;
 import AoC2020.Day05.BinaryBoarding;
 import AoC2020.Day06.CustomCustoms;
+import AoC2020.Day07.HandyHaversacks;
 
 import java.io.IOException;
 
@@ -18,6 +19,7 @@ public class Main {
         PassportProcessing.runDay(); //2020 - Day 4
         BinaryBoarding.runDay(); //2020 - Day 5
         CustomCustoms.runDay(); //2020 - Day 6
+        HandyHaversacks.runDay(); //2020 - Day 7
 
         long finish = System.nanoTime();
         long delta = finish - start;
