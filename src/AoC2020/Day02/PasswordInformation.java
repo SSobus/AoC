@@ -1,4 +1,4 @@
-package AoC2020.Day2;
+package AoC2020.Day02;
 
 public class PasswordInformation {
 

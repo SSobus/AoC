@@ -1,4 +1,4 @@
-package AoC2020.Day4;
+package AoC2020.Day04;
 
 import Utils.LoadFile;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class PassportProcessing {
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 4 *********************");
-        List<String> words = LoadFile.LoadWords("src/AoC2020/Day4/passports.txt", " ");
+        List<String> words = LoadFile.LoadWords("src/AoC2020/Day04/passports.txt", " ");
 
         List<PassportInformation> info = createPassports(words);
 

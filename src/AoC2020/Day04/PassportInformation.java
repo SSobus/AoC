@@ -1,4 +1,4 @@
-package AoC2020.Day4;
+package AoC2020.Day04;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package AoC2020.Day1;
+package AoC2020.Day01;
 
 import Utils.LoadFile;
 
@@ -10,7 +10,7 @@ public class ReportRepair {
 
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 1 *********************");
-        List<Integer> integers = LoadFile.LoadIntegers("src/AoC2020/Day1/numbers.txt");
+        List<Integer> integers = LoadFile.LoadIntegers("src/AoC2020/Day01/numbers.txt");
 
         integers.sort(Integer::compareTo);
 

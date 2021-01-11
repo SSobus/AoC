@@ -1,4 +1,4 @@
-package AoC2020.Day2;
+package AoC2020.Day02;
 
 import Utils.LoadFile;
 
@@ -10,7 +10,7 @@ public class PasswordPhilosophy {
 
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 2 *********************");
-        List<String> strings = LoadFile.LoadStrings("src/AoC2020/Day2/passwords.txt");
+        List<String> strings = LoadFile.LoadStrings("src/AoC2020/Day02/passwords.txt");
 
         List<PasswordInformation> passwords = parsePasswords(strings);
 

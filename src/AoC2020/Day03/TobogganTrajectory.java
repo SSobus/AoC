@@ -1,4 +1,4 @@
-package AoC2020.Day3;
+package AoC2020.Day03;
 
 import Utils.LoadFile;
 
@@ -9,7 +9,7 @@ public class TobogganTrajectory {
 
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 3 *********************");
-        List<String> trees = LoadFile.LoadStrings("src/AoC2020/Day3/trees.txt");
+        List<String> trees = LoadFile.LoadStrings("src/AoC2020/Day03/trees.txt");
 
         Part1(trees);//Part 1
         Part2(trees);//Part 2

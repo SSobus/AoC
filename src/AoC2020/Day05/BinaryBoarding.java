@@ -1,4 +1,4 @@
-package AoC2020.Day5;
+package AoC2020.Day05;
 
 import Utils.LoadFile;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class BinaryBoarding {
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 5 *********************");
-        List<String> passes = LoadFile.LoadStrings("src/AoC2020/Day5/boarding.txt");
+        List<String> passes = LoadFile.LoadStrings("src/AoC2020/Day05/boarding.txt");
 
 
         Part1(passes);//Part 1
