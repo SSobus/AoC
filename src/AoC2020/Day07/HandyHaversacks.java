@@ -22,6 +22,15 @@ public class HandyHaversacks {
 
         int count = 0;
 
+        String findBag = "shiny gold";
+
+        Set<String> bags = bagContents.keySet();
+        for (String name : bags) {
+            if (bagRecursion(bagContents, name, findBag)) {
+                count++;
+            }
+        }
+
         System.out.println("Count: " + count);
 
         long finish = System.nanoTime();
@@ -34,22 +43,6 @@ public class HandyHaversacks {
         long start = System.nanoTime();
 
         int count = 0;
-
-        String findBag = "shiny gold";
-
-        //count = (int) bagContents.keySet().stream().map(bagContents::get).filter(bagContents. value -> bagRecursion(bagContents, value, findBag)).count();
-
-        Set<String> bags = bagContents.keySet();
-        for (String name : bags) {
-            if (name.equals(findBag)) {
-                break;
-            }
-            if (bagRecursion(bagContents, name, findBag)) {
-                count++;
-            }
-        }
-
-        //NOT 31,20
 
         System.out.println("Count: " + count);
 
@@ -99,13 +92,16 @@ public class HandyHaversacks {
             return false;
         }
 
+        boolean found = false;
         for (Contents content : contents) {
             if (bagContains(contents, findName)) {
                 return true;
             }
-            return bagRecursion(mapContents, content.getName(), findName);
+            if (bagRecursion(mapContents, content.getName(), findName)){
+                found = true;
+            }
         }
 
-        return false;
+        return found;
     }
 }
