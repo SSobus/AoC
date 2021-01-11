@@ -32,7 +32,11 @@ public class CustomCustoms {
             Map<String, Boolean> answersMap = new HashMap<>();
             Stream<String> stringStream = groupAnswers.codePoints().mapToObj(c -> String.valueOf((char) c));
 
-            stringStream.forEach(answer -> answersMap.put(answer, true));
+            stringStream.forEach(answer -> {
+                if (!answer.equals(",")) {
+                    answersMap.put(answer, true);
+                }
+            });
             count += answersMap.size();
         }
 
