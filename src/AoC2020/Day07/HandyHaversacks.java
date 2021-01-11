@@ -44,6 +44,11 @@ public class HandyHaversacks {
 
         int count = 0;
 
+        String findBag = "shiny gold";
+
+        count += (bagRecursion(bagContents, findBag));
+
+
         System.out.println("Count: " + count);
 
         long finish = System.nanoTime();
@@ -97,11 +102,26 @@ public class HandyHaversacks {
             if (bagContains(contents, findName)) {
                 return true;
             }
-            if (bagRecursion(mapContents, content.getName(), findName)){
+            if (bagRecursion(mapContents, content.getName(), findName)) {
                 found = true;
             }
         }
 
         return found;
+    }
+
+    private static Integer bagRecursion(Map<String, List<Contents>> mapContents, String nextBag) {
+        List<Contents> contents = mapContents.get(nextBag);
+
+        if (contents == null) {
+            return 0;
+        }
+
+        int amount = 0;
+        for (Contents content : contents) {
+            amount += bagRecursion(mapContents, content.getName()) * content.getAmount() + content.getAmount();
+        }
+
+        return amount;
     }
 }
