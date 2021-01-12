@@ -81,6 +81,7 @@ public class HandheldHalting {
 
         int answer = 0;
         Integer currentPosition = 0;
+        boolean skip = false;
 
         do {
             Instruction instruction = instructions.get(currentPosition);
@@ -99,7 +100,7 @@ public class HandheldHalting {
             }
 
             boolean failed = false;
-            while (!failed) {
+            while (!skip) {
                 if (usedTestInstructions.contains(instructions.get(testPosition))) {
                     failed = true;
                     break;
@@ -121,12 +122,12 @@ public class HandheldHalting {
                 testAmount = instructions.get(testPosition).getAmount();
             }
 
-            if (!failed) {
+            if (!failed && !skip) {
                 switch (instruction.operation) {
                     case "nop" -> instruction.operation = "jmp";
                     case "jmp" -> instruction.operation = "nop";
                 }
-
+                skip = true;
             }
 
             switch (instruction.operation) {
