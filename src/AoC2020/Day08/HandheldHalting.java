@@ -81,7 +81,7 @@ public class HandheldHalting {
 
         int answer = 0;
         Integer currentPosition = 0;
-        boolean skip = false;
+        boolean found = false;
 
         do {
             Instruction instruction = instructions.get(currentPosition);
@@ -99,10 +99,8 @@ public class HandheldHalting {
                 case "jmp" -> testOperation = "nop";
             }
 
-            boolean failed = false;
-            while (!skip) {
+            while (!found) {
                 if (usedTestInstructions.contains(instructions.get(testPosition))) {
-                    failed = true;
                     break;
                 } else {
                     usedTestInstructions.add(instructions.get(testPosition));
@@ -115,19 +113,16 @@ public class HandheldHalting {
                 }
 
                 if (testPosition >= instructions.size()) {
+                    switch (instruction.operation) {
+                        case "nop" -> instruction.operation = "jmp";
+                        case "jmp" -> instruction.operation = "nop";
+                    }
+                    found = true;
                     break;
                 }
 
                 testOperation = instructions.get(testPosition).getOperation();
                 testAmount = instructions.get(testPosition).getAmount();
-            }
-
-            if (!failed && !skip) {
-                switch (instruction.operation) {
-                    case "nop" -> instruction.operation = "jmp";
-                    case "jmp" -> instruction.operation = "nop";
-                }
-                skip = true;
             }
 
             switch (instruction.operation) {
