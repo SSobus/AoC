@@ -72,6 +72,7 @@ public class HandheldHalting {
         System.out.println("Total Time: " + delta + "ns");
     }
 
+    //incorrect line is 278
     public static void Part2(List<String> operations) {
         System.out.println("Part 2:");
         long start = System.nanoTime();
@@ -152,7 +153,7 @@ public class HandheldHalting {
         String operation;
         Integer amount;
         Boolean executed;
-        
+
         public Instruction(String operation, Integer amount, Boolean executed) {
             this.operation = operation;
             this.amount = amount;
