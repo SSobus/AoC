@@ -5,6 +5,7 @@ import AoC2020.Day04.PassportProcessing;
 import AoC2020.Day05.BinaryBoarding;
 import AoC2020.Day06.CustomCustoms;
 import AoC2020.Day07.HandyHaversacks;
+import AoC2020.Day08.HandheldHalting;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class Main {
         BinaryBoarding.runDay(); //2020 - Day 5
         CustomCustoms.runDay(); //2020 - Day 6
         HandyHaversacks.runDay(); //2020 - Day 7
+        HandheldHalting.runDay(); //2020 - Day 8
 
         long finish = System.nanoTime();
         long delta = finish - start;
