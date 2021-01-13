@@ -7,6 +7,7 @@ import AoC2020.Day06.CustomCustoms;
 import AoC2020.Day07.HandyHaversacks;
 import AoC2020.Day08.HandheldHalting;
 import AoC2020.Day09.EncodingError;
+import AoC2020.Day10.AdapterArray;
 
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class Main {
         HandyHaversacks.runDay(); //2020 - Day 7
         HandheldHalting.runDay(); //2020 - Day 8
         EncodingError.runDay(); //2020 - Day 9
+        AdapterArray.runDay(); //2020 - Day 10
 
         long finish = System.nanoTime();
         long delta = finish - start;
