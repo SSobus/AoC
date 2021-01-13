@@ -13,8 +13,8 @@ public class AdapterArray {
         System.out.println("2020 - Day 10 *********************");
         List<Integer> adapters = LoadFile.LoadIntegers("src/main/java/AoC2020/Day10/adapters.txt");
 
+        adapters.add(0);
         adapters.sort(Integer::compareTo);
-
         adapters.add(adapters.stream().max(Integer::compareTo).orElse(0) + 3);
 
         Part1(adapters);//Part 1
