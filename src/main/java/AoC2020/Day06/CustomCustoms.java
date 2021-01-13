@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class CustomCustoms {
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 6 *********************");
-        List<String> answers = LoadFile.LoadStrings("src/AoC2020/Day06/answers.txt");
+        List<String> answers = LoadFile.LoadStrings("src/main/java/AoC2020/Day06/answers.txt");
 
         Part1(answers);//Part 1
         Part2(answers);//Part 2

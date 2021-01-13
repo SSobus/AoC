@@ -10,7 +10,7 @@ public class ReportRepair {
 
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 1 *********************");
-        List<Integer> integers = LoadFile.LoadIntegers("src/AoC2020/Day01/numbers.txt");
+        List<Integer> integers = LoadFile.LoadIntegers("src/main/java/AoC2020/Day01/numbers.txt");
 
         integers.sort(Integer::compareTo);
 

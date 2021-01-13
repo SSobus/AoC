@@ -10,7 +10,7 @@ public class HandheldHalting {
 
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 8 *********************");
-        List<String> operations = LoadFile.LoadStrings("src/AoC2020/Day08/code.txt");
+        List<String> operations = LoadFile.LoadStrings("src/main/java/AoC2020/Day08/code.txt");
 
         List<Instruction> instructions = loadInstructions(operations);
 

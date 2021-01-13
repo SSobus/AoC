@@ -8,7 +8,7 @@ import java.util.*;
 public class HandyHaversacks {
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 7 *********************");
-        List<String> bags = LoadFile.LoadStrings("src/AoC2020/Day07/bags.txt");
+        List<String> bags = LoadFile.LoadStrings("src/main/java/AoC2020/Day07/bags.txt");
 
         Map<String, List<Contents>> bagContents = buildContents(bags);
 
