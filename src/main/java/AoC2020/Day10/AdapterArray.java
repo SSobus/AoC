@@ -3,19 +3,23 @@ package AoC2020.Day10;
 import Utils.LoadFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AdapterArray {
+    static Map<Integer, Long> paths = new HashMap<>();
+
     public static void runDay() throws IOException {
         System.out.println("2020 - Day 10 *********************");
         List<Integer> adapters = LoadFile.LoadIntegers("src/main/java/AoC2020/Day10/adapters.txt");
 
         adapters.add(0);
         adapters.sort(Integer::compareTo);
-        adapters.add(adapters.stream().max(Integer::compareTo).orElse(0) + 3);
+        adapters.add(adapters.get(adapters.size() - 1) + 3);
 
         Part1(adapters);//Part 1
         Part2(adapters);//Part 2
@@ -25,7 +29,7 @@ public class AdapterArray {
         System.out.println("Part 1:");
         long start = System.nanoTime();
 
-        int answer = 0;
+        int answer;
 
         ConcurrentMap<Integer, AtomicInteger> answersMap = new ConcurrentHashMap<>();
 
@@ -50,8 +54,9 @@ public class AdapterArray {
         System.out.println("Part 2:");
         long start = System.nanoTime();
 
-        int answer = 0;
+        Long answer;
 
+        answer = followBranch(adapters, 0);
 
         System.out.println("Answer: " + answer);
 
@@ -59,4 +64,20 @@ public class AdapterArray {
         long delta = finish - start;
         System.out.println("Total Time: " + delta + "ns");
     }
+
+    private static Long followBranch(List<Integer> adapters, int position) {
+        if (position == (adapters.size() - 1)) return 1L;
+
+        if (paths.containsKey(position)) return paths.get(position);
+        Long answer = 0L;
+        for (int current = position + 1; current < adapters.size(); current++) {
+            if (adapters.get(current) - adapters.get(position) > 3) {
+                break;
+            }
+            answer += followBranch(adapters, current);
+        }
+        paths.put(position, answer);
+        return answer;
+    }
+
 }
