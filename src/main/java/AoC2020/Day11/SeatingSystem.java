@@ -53,25 +53,7 @@ public class SeatingSystem {
             changed = false;
 
             for (int i = 0; i < positions.size(); i++) {
-                Position position = positions.get(i);
-                Position updatedPosition = updatedPositions.get(i);
-
-                //Sit if a seat and less than 4 adjacent occupants
-
-                if (!position.isSeat()) {
-                    continue;
-                }
-
-                if (position.isSeat() && position.getAdjacentOccupied() == 0 && !position.isOccupied()) {
-                    updatedPosition.setOccupied(true);
-                    changed = true;
-                }
-
-                if (position.isSeat() && position.getAdjacentOccupied() >= 4 && position.isOccupied()) {
-                    updatedPosition.setOccupied(false);
-                    changed = true;
-                }
-
+                changed = changeSeat(positions, changed, updatedPositions, i, 4);
             }
 
             //copy updated to full list
@@ -261,25 +243,7 @@ public class SeatingSystem {
             changed = false;
 
             for (int i = 0; i < positions.size(); i++) {
-                Position position = positions.get(i);
-                Position updatedPosition = updatedPositions.get(i);
-
-                //Sit if a seat and less than 4 adjacent occupants
-
-                if (!position.isSeat()) {
-                    continue;
-                }
-
-                if (position.isSeat() && position.getAdjacentOccupied() == 0 && !position.isOccupied()) {
-                    updatedPosition.setOccupied(true);
-                    changed = true;
-                }
-
-                if (position.isSeat() && position.getAdjacentOccupied() >= 5 && position.isOccupied()) {
-                    updatedPosition.setOccupied(false);
-                    changed = true;
-                }
-
+                changed = changeSeat(positions, changed, updatedPositions, i, 5);
             }
 
             //copy updated to full list
@@ -299,5 +263,27 @@ public class SeatingSystem {
         long finish = System.nanoTime();
         long delta = finish - start;
         System.out.println("Total Time: " + delta + "ns");
+    }
+
+    private static boolean changeSeat(List<Position> positions, boolean changed, List<Position> updatedPositions, int index, int maxAdjacent) {
+        Position position = positions.get(index);
+        Position updatedPosition = updatedPositions.get(index);
+
+        //Sit if a seat and less than 4 adjacent occupants
+
+        if (!position.isSeat()) {
+            return changed;
+        }
+
+        if (position.isSeat() && position.getAdjacentOccupied() == 0 && !position.isOccupied()) {
+            updatedPosition.setOccupied(true);
+            changed = true;
+        }
+
+        if (position.isSeat() && position.getAdjacentOccupied() >= maxAdjacent && position.isOccupied()) {
+            updatedPosition.setOccupied(false);
+            changed = true;
+        }
+        return changed;
     }
 }
