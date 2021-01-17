@@ -24,6 +24,10 @@ public class Position {
         return isSeat;
     }
 
+    public Boolean isFloor() {
+        return !isSeat;
+    }
+
     public void addAdjacentOccupant() {
         adjacentOccupied++;
     }
