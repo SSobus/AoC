@@ -40,7 +40,7 @@ public class Position {
         this.adjacentOccupied = adjacentOccupied;
     }
 
-    public Boolean getOccupied() {
+    public Boolean isOccupied() {
         return isOccupied;
     }
 

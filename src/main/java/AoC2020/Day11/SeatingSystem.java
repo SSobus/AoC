@@ -35,126 +35,121 @@ public class SeatingSystem {
         int answer;
         boolean changed;
 
+        //Refresh updatedPositions list to hold most current - Deep Copy
         List<Position> updatedPositions = new ArrayList<>();
-
         positions.forEach(position -> {
             updatedPositions.add(new Position(position));
         });
 
-        int totalSize = rowLength * rows;
+
 
         do {
             changed = false;
 
             for (int i = 0; i < positions.size(); i++) {
-                Position position = updatedPositions.get(i);
+                Position position = positions.get(i);
+                Position updatedPosition = updatedPositions.get(i);
 
                 //Sit if a seat and less than 4 adjacent occupants
 
-                boolean topLeft = ((i - rowLength - 1) >= 0) && (i % rowLength != 0);
-                boolean top = i - rowLength >= 0;
-                boolean topRight = (i - rowLength + 1) >= 0 && ((i + 1) % rowLength != 0);
-                boolean left = i % rowLength != 0;
-                boolean right = (i + 1) % rowLength != 0;
-                boolean botLeft = (i + rowLength - 1) < totalSize && (i % rowLength != 0);
-                boolean bottom = i + rowLength < totalSize;
-                boolean botRight = (i + rowLength + 1) < totalSize && ((i + 1) % rowLength != 0);
-
-                if (!positions.get(i).isSeat()) {
+                if (!position.isSeat()) {
                     continue;
                 }
 
-                if (positions.get(i).isSeat() && positions.get(i).getAdjacentOccupied() < 4) {
-                    position.setOccupied(true);
+                if (position.isSeat() && position.getAdjacentOccupied() == 0 && !position.isOccupied()) {
+                    updatedPosition.setOccupied(true);
                     changed = true;
                 }
 
-                if (positions.get(i).isSeat() && positions.get(i).getAdjacentOccupied() >= 4) {
-                    position.setOccupied(false);
+                if (position.isSeat() && position.getAdjacentOccupied() >= 4 && position.isOccupied()) {
+                    updatedPosition.setOccupied(false);
                     changed = true;
                 }
 
-                //Find Neighbours and update
-                if (top) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i - rowLength).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i - rowLength).removeAdjacentOccupant();
-                    }
-                }
-
-                if (left) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i - 1).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i - 1).removeAdjacentOccupant();
-                    }
-                }
-
-                if (right) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i + 1).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i + 1).removeAdjacentOccupant();
-                    }
-                }
-
-                if (bottom) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i + rowLength).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i + rowLength).removeAdjacentOccupant();
-                    }
-                }
-
-                if (topLeft) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i - rowLength - 1).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i - rowLength - 1).removeAdjacentOccupant();
-                    }
-                }
-
-                if (topRight) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i - rowLength + 1).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i - rowLength + 1).removeAdjacentOccupant();
-                    }
-                }
-
-                if (botLeft) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i + rowLength - 1).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i + rowLength - 1).removeAdjacentOccupant();
-                    }
-                }
-
-                if (botRight) {
-                    if (position.getOccupied()) {
-                        updatedPositions.get(i + rowLength + 1).addAdjacentOccupant();
-                    } else {
-                        updatedPositions.get(i + rowLength + 1).removeAdjacentOccupant();
-                    }
-                }
             }
 
             //copy updated to full list
             for (int i = 0; i < updatedPositions.size(); i++) {
+                updatedPositions.get(i).setAdjacentOccupied(countAdjacentOccupied(updatedPositions, i, rowLength, rows));
                 positions.set(i, new Position(updatedPositions.get(i)));
             }
 
         } while (changed);
 
 
-        answer = (int) positions.stream().filter(Position::getOccupied).count();
+        answer = (int) positions.stream().filter(Position::isOccupied).count();
 
         System.out.println("Answer: " + answer);
 
         long finish = System.nanoTime();
         long delta = finish - start;
         System.out.println("Total Time: " + delta + "ns");
+    }
+
+    public static Integer countAdjacentOccupied(List<Position> updatedPositions, Integer index, Integer rowLength, Integer rows) {
+        Integer count = 0;
+
+        int totalSize = rowLength * rows;
+
+        boolean top = index - rowLength >= 0;
+        boolean left = index % rowLength != 0;
+        boolean right = (index + 1) % rowLength != 0;
+        boolean bottom = index + rowLength < totalSize;
+
+        boolean topLeft = ((index - rowLength - 1) >= 0) && (index % rowLength != 0);
+        boolean topRight = (index - rowLength + 1) >= 0 && ((index + 1) % rowLength != 0);
+        boolean botLeft = (index + rowLength - 1) < totalSize && (index % rowLength != 0);
+        boolean botRight = (index + rowLength + 1) < totalSize && ((index + 1) % rowLength != 0);
+
+        if (top) {
+            if (updatedPositions.get(index - rowLength).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (left) {
+            if (updatedPositions.get(index - 1).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (right) {
+            if (updatedPositions.get(index + 1).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (bottom) {
+            if (updatedPositions.get(index + rowLength).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (topLeft) {
+            if (updatedPositions.get(index - rowLength - 1).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (topRight) {
+            if (updatedPositions.get(index - rowLength + 1).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (botLeft) {
+            if (updatedPositions.get(index + rowLength - 1).isOccupied()) {
+                count++;
+            }
+        }
+
+        if (botRight) {
+            if (updatedPositions.get(index + rowLength + 1).isOccupied()) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     public static void Part2(List<Position> positions, Integer rowLength) {
