@@ -28,14 +28,6 @@ public class Position {
         return !isSeat;
     }
 
-    public void addAdjacentOccupant() {
-        adjacentOccupied++;
-    }
-
-    public void removeAdjacentOccupant() {
-        adjacentOccupied--;
-    }
-
     public Integer getAdjacentOccupied() {
         return adjacentOccupied;
     }
