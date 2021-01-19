@@ -3,6 +3,7 @@ package AoC2020.Day13;
 import Utils.LoadFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ public class ShuttleSearch {
         List<Integer> buses = Arrays.stream(busStrings.get(1).split(",")).filter(bus -> !bus.equals("x")).map(Integer::valueOf).collect(Collectors.toList());
 
         Part1(timestamp, buses);//Part 1
-        Part2(timestamp, buses);//Part 2
+        Part2(busStrings.get(1));//Part 2
     }
 
     public static void Part1(Integer timestamp, List<Integer> buses) {
@@ -35,7 +36,6 @@ public class ShuttleSearch {
                 lowest = difference;
                 busNo = bus;
             }
-
         }
 
         answer = busNo * lowest;
@@ -47,11 +47,52 @@ public class ShuttleSearch {
         System.out.println("Total Time: " + delta + "ns");
     }
 
-    public static void Part2(Integer timestamp, List<Integer> buses) {
+    public static void Part2(String busString) {
         System.out.println("Part 2:");
         long start = System.nanoTime();
 
-        int answer = 0;
+        List<String> buses = Arrays.stream(busString.split(",")).collect(Collectors.toList());
+
+        long answer;
+
+        //Use Chinese Remainder Theorem https://www.youtube.com/watch?v=zIFehsBHB8o
+        List<Bus> busList = new ArrayList<>();
+        long N = 1;
+
+        for (int i = 0; i < buses.size(); i++) {
+            if (buses.get(i).equals("x")) {
+                continue;
+            }
+
+            Bus bus = new Bus();
+            bus.setModulo(Integer.parseInt(buses.get(i))); //modulo = bus number(timing)
+            bus.setBi(bus.getModulo() - i);// gives you the Bi to put all buses on a common X
+            busList.add(bus);
+
+            //Help find N for later
+            N *= bus.getModulo();
+        }
+
+        long sum = 0;
+        for (Bus bus : busList) {
+            int mod = bus.getModulo();
+
+            //get Ni
+            bus.setNi(N / mod); //Ni is all others except itself
+
+            //find (NiXi === 1 (% modulo)
+            // as Xi = 1 / (Ni % modulo),  (Xi = Inverse Ni)
+            long inverse = bus.getNi() % mod;
+            long factor = 1;
+            while ((inverse * factor) % mod != 1) {
+                factor++;
+            }
+
+            bus.setXi(factor);
+            sum += bus.getBiNiXi();
+        }
+
+        answer = sum % N;
 
         System.out.println("Answer: " + answer);
 
