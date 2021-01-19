@@ -29,8 +29,7 @@ public class ShuttleSearch {
         int busNo = 0;
 
         for (Integer bus : buses) {
-            int factor = timestamp / bus;
-            int difference = ((factor + 1) * bus) - timestamp;
+            int difference = Math.abs(bus - (timestamp % bus));
 
             if (difference < lowest) {
                 lowest = difference;
