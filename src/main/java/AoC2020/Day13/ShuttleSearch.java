@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class ShuttleSearch {
 
     public static void runDay() throws IOException {
-        System.out.println("2020 - Day 12 *********************");
+        System.out.println("2020 - Day 13 *********************");
         List<String> busStrings = LoadFile.LoadStrings("src/main/java/AoC2020/Day13/buses.txt");
 
         Integer timestamp = Integer.parseInt(busStrings.get(0));

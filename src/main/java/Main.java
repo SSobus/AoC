@@ -11,6 +11,7 @@ import AoC2020.Day10.AdapterArray;
 import AoC2020.Day11.SeatingSystem;
 import AoC2020.Day12.RainRisk;
 import AoC2020.Day13.ShuttleSearch;
+import AoC2020.Day14.DockingData;
 
 import java.io.IOException;
 
@@ -32,6 +33,7 @@ public class Main {
         SeatingSystem.runDay(); //2020 - Day 11
         RainRisk.runDay(); //2020 - Day 12
         ShuttleSearch.runDay(); //2020 - Day 13
+        DockingData.runDay(); //2020 - Day 14
 
         long finish = System.nanoTime();
         long delta = finish - start;
