@@ -20,7 +20,7 @@ public class DockingData {
         System.out.println("Part 1:");
         long start = System.nanoTime();
 
-        long answer = 0L;
+        long answer;
 
         Map<Long, Long> memory = new HashMap<>();
         String mask = "";
@@ -43,11 +43,8 @@ public class DockingData {
             memory.put(Long.parseUnsignedLong(mem), ans);
         }
 
-//        for (long val : memory.values()) {
-//            answer += val;
-//        }
-
-        System.out.println("Answer: " + memory.values().stream().mapToLong(value -> value).sum());
+        answer = memory.values().stream().mapToLong(value -> value).sum();
+        System.out.println("Answer: " + answer);
 
         long finish = System.nanoTime();
         long delta = finish - start;
@@ -58,7 +55,7 @@ public class DockingData {
         System.out.println("Part 2:");
         long start = System.nanoTime();
 
-        long answer = 0;
+        long answer;
 
         Map<Long, Long> memory = new HashMap<>();
         String mask = "";
@@ -80,7 +77,8 @@ public class DockingData {
             parseMemory(memory, Long.parseUnsignedLong(mem) | mask1, value, ~mask2 & 0xFFFFFFFFFL);
         }
 
-        System.out.println("Answer: " + memory.values().stream().mapToLong(value -> value).sum());
+        answer = memory.values().stream().mapToLong(value -> value).sum();
+        System.out.println("Answer: " + answer);
 
         long finish = System.nanoTime();
         long delta = finish - start;
