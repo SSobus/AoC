@@ -22,7 +22,7 @@ public class DockingData {
 
         long answer = 0L;
 
-        Map<Long, String> memory = new HashMap<>();
+        Map<Long, Long> memory = new HashMap<>();
         String mask = "";
 
         for (String instruction : instructions) {
@@ -33,30 +33,18 @@ public class DockingData {
                 continue;
             }
 
+            long mask1 = Long.parseUnsignedLong(mask.replaceAll("X", "0"), 2);
+            long mask2 = Long.parseUnsignedLong(mask.replaceAll("0", "1").replaceAll("X", "0"), 2);
+
             long value = Long.parseUnsignedLong(rawString);
-            String binaryStr = String.format("%36s", Long.toUnsignedString(value, 2)).replace(" ", "0");
+            long ans = (value | (mask1 & mask2)) & (mask1 | ~mask2);
 
-            //TODO: use bit manipulation - research and see how to do it with & | ^ ~
-            StringBuilder result = new StringBuilder();
-            for (int i = 0; i < mask.length(); i++) {
-                char maskChar = mask.charAt(i);
-                if (maskChar == 'X') {
-                    result.append(binaryStr.charAt(i));
-                } else if (maskChar == '0' || maskChar == '1') {
-                    result.append(maskChar);
-                }
-            }
-
-//            System.out.println("raw : " + String.format("%d", value));
-//            System.out.println("val : " + String.format("%36s", binaryStr.replace(" ", "0")));
-//            System.out.println("mask: " + String.format("%36s", mask.replace(" ", "0")));
-//            System.out.println("res : " + String.format("%36s", result.toString().replace(" ", "0")));
             String mem = instruction.substring(instruction.indexOf("[") + 1, instruction.indexOf("]")).trim();
-            memory.put(Long.parseLong(mem), result.toString());
+            memory.put(Long.parseUnsignedLong(mem), ans);
         }
 
-        for (String val : memory.values()) {
-            answer += Long.parseUnsignedLong(val, 2);
+        for (long val : memory.values()) {
+            answer += val;
         }
 
         System.out.println("Answer: " + answer);
