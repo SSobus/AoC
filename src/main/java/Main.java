@@ -12,12 +12,18 @@ import AoC2020.Day11.SeatingSystem;
 import AoC2020.Day12.RainRisk;
 import AoC2020.Day13.ShuttleSearch;
 import AoC2020.Day14.DockingData;
+import AoC2021.Day01.SonarSweep;
+import AoC2021.Day02.Dive;
 
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String [ ] args) throws IOException {
+        run2021();
+    }
+
+    public static void run2020() throws IOException {
         long start = System.nanoTime();
 
         ReportRepair.runDay(); //2020 - Day 1
@@ -34,6 +40,17 @@ public class Main {
         RainRisk.runDay(); //2020 - Day 12
         ShuttleSearch.runDay(); //2020 - Day 13
         DockingData.runDay(); //2020 - Day 14
+
+        long finish = System.nanoTime();
+        long delta = finish - start;
+        System.out.println("Total Time: " + delta + "ns");
+    }
+
+    public static void run2021() throws IOException {
+        long start = System.nanoTime();
+
+        SonarSweep.runDay();
+        Dive.runDay();
 
         long finish = System.nanoTime();
         long delta = finish - start;
