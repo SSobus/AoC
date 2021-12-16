@@ -14,7 +14,9 @@ import AoC2020.Day13.ShuttleSearch;
 import AoC2020.Day14.DockingData;
 import AoC2021.Day01.SonarSweep;
 import AoC2021.Day02.Dive;
+import AoC2021.Day03.BinaryDiagnostic;
 
+import javax.naming.BinaryRefAddr;
 import java.io.IOException;
 
 public class Main {
@@ -49,8 +51,9 @@ public class Main {
     public static void run2021() throws IOException {
         long start = System.nanoTime();
 
-        SonarSweep.runDay();
-        Dive.runDay();
+        SonarSweep.runDay(); //Day 1
+        Dive.runDay(); // Day 2
+        BinaryDiagnostic.runDay(); //Day 3
 
         long finish = System.nanoTime();
         long delta = finish - start;
