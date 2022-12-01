@@ -21,6 +21,9 @@ public class LoadFile {
 
         List<Integer> integers = new ArrayList<>();
         while (scanner.hasNext()) {
+            if (scanner.hasNext("")) {
+                integers.add(0);
+            }
             if (scanner.hasNextInt()) {
                 integers.add(scanner.nextInt());
             } else {

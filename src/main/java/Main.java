@@ -16,14 +16,14 @@ import AoC2020.Day15.RambunctiousRecitation;
 import AoC2021.Day01.SonarSweep;
 import AoC2021.Day02.Dive;
 import AoC2021.Day03.BinaryDiagnostic;
+import AoC2022.Day01.Day01;
 
-import javax.naming.BinaryRefAddr;
 import java.io.IOException;
 
 public class Main {
 
     public static void main(String [ ] args) throws IOException {
-        run2021();
+        run2022();
     }
 
     public static void run2020() throws IOException {
@@ -56,6 +56,16 @@ public class Main {
         SonarSweep.runDay(); //Day 1
         Dive.runDay(); // Day 2
         BinaryDiagnostic.runDay(); //Day 3
+
+        long finish = System.nanoTime();
+        long delta = finish - start;
+        System.out.println("Total Time: " + delta + "ns");
+    }
+
+    public static void run2022() throws IOException {
+        long start = System.nanoTime();
+
+        Day01.runDay(); //Day 1
 
         long finish = System.nanoTime();
         long delta = finish - start;
