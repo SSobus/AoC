@@ -28,15 +28,15 @@ public class Day02 {
         int score = 0;
         for (String play : strings) {
             switch (play) {
-                case "A X" -> score += 1 + 3;
-                case "A Y" -> score += 2 + 6;
-                case "A Z" -> score += 3;
-                case "B X" -> score += 1;
-                case "B Y" -> score += 2 + 3;
-                case "B Z" -> score += 3 + 6;
-                case "C X" -> score += 1 + 6;
-                case "C Y" -> score += 2;
-                case "C Z" -> score += 3 + 3;
+                case "A X" -> score += Play.ROCK.getNumVal() + Outcome.DRAW.getNumVal();
+                case "A Y" -> score += Play.PAPER.getNumVal() + Outcome.WIN.getNumVal();
+                case "A Z" -> score += Play.SCISSORS.getNumVal() + Outcome.LOSE.getNumVal();
+                case "B X" -> score += Play.ROCK.getNumVal() + Outcome.LOSE.getNumVal();
+                case "B Y" -> score += Play.PAPER.getNumVal() + Outcome.DRAW.getNumVal();
+                case "B Z" -> score += Play.SCISSORS.getNumVal() + Outcome.WIN.getNumVal();
+                case "C X" -> score += Play.ROCK.getNumVal() + Outcome.WIN.getNumVal();
+                case "C Y" -> score += Play.PAPER.getNumVal() + Outcome.LOSE.getNumVal();
+                case "C Z" -> score += Play.SCISSORS.getNumVal() + Outcome.DRAW.getNumVal();
             }
         }
 
@@ -50,7 +50,6 @@ public class Day02 {
         System.out.println("Total Time: " + delta + "ns");
     }
 
-
     /**
      * @param strings List of Integers to search through
      */
@@ -62,15 +61,15 @@ public class Day02 {
         int score = 0;
         for (String play : strings) {
             switch (play) {
-                case "A X" -> score += 3;
-                case "A Y" -> score += 1 + 3;
-                case "A Z" -> score += 2 + 6;
-                case "B X" -> score += 1;
-                case "B Y" -> score += 2 + 3;
-                case "B Z" -> score += 3 + 6;
-                case "C X" -> score += 2;
-                case "C Y" -> score += 3 + 3;
-                case "C Z" -> score += 1 + 6;
+                case "A X" -> score += Play.SCISSORS.getNumVal() + Outcome.LOSE.getNumVal();
+                case "A Y" -> score += Play.ROCK.getNumVal() + Outcome.DRAW.getNumVal();
+                case "A Z" -> score += Play.PAPER.getNumVal() + Outcome.WIN.getNumVal();
+                case "B X" -> score += Play.ROCK.getNumVal() + Outcome.LOSE.getNumVal();
+                case "B Y" -> score += Play.PAPER.getNumVal() + Outcome.DRAW.getNumVal();
+                case "B Z" -> score += Play.SCISSORS.getNumVal() + Outcome.WIN.getNumVal();
+                case "C X" -> score += Play.PAPER.getNumVal() + Outcome.LOSE.getNumVal();
+                case "C Y" -> score += Play.SCISSORS.getNumVal() + Outcome.DRAW.getNumVal();
+                case "C Z" -> score += Play.ROCK.getNumVal() + Outcome.WIN.getNumVal();
             }
         }
 
@@ -81,6 +80,40 @@ public class Day02 {
         long finish = System.nanoTime();
         long delta = finish - start;
         System.out.println("Total Time: " + delta + "ns");
+    }
+
+    enum Play {
+        ROCK(1),
+        PAPER(2),
+        SCISSORS(3);
+
+        private final int numVal;
+
+        Play(int numVal) {
+            this.numVal = numVal;
+        }
+
+        public int getNumVal() {
+            return numVal;
+        }
+    }
+
+
+    enum Outcome {
+        LOSE(0),
+        DRAW(3),
+        WIN(6);
+
+        private final int numVal;
+
+        Outcome(int numVal) {
+            this.numVal = numVal;
+        }
+
+        public int getNumVal() {
+            return numVal;
+        }
+
     }
 
 
