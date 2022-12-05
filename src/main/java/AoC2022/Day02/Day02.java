@@ -9,7 +9,7 @@ public class Day02 {
 
 
     public static void runDay() throws IOException {
-        System.out.println("2022 - Day 1 *********************");
+        System.out.println("2022 - Day 2 *********************");
         List<String> strings = LoadFile.LoadStrings("src/main/java/AoC2022/Day02/data.txt");
 
         Part1(strings);//Part 1

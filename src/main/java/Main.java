@@ -18,6 +18,7 @@ import AoC2021.Day02.Dive;
 import AoC2021.Day03.BinaryDiagnostic;
 import AoC2022.Day01.Day01;
 import AoC2022.Day02.Day02;
+import AoC2022.Day03.Day03;
 
 import java.io.IOException;
 
@@ -68,6 +69,7 @@ public class Main {
 
         Day01.runDay(); //Day 1
         Day02.runDay(); //Day 2
+        Day03.runDay(); //Day 3
 
         long finish = System.nanoTime();
         long delta = finish - start;
