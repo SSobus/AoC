@@ -74,7 +74,7 @@ public class Day03 {
         int sum = 0;
         for (List<String> group : groups) {
             char matchingCharacter = getMatchingCharacter(group);
-            int characterValue = matchingCharacter > 90 ? (matchingCharacter - 96) : (matchingCharacter - 38);
+            int characterValue = matchingCharacter < 91 ? (matchingCharacter - 38) : (matchingCharacter - 96);
             sum += characterValue;
         }
         //END CODE
