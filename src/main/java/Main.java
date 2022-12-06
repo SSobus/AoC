@@ -20,6 +20,7 @@ import AoC2022.Day01.Day01;
 import AoC2022.Day02.Day02;
 import AoC2022.Day03.Day03;
 import AoC2022.Day04.Day04;
+import AoC2022.Day06.Day06;
 
 import java.io.IOException;
 
@@ -72,6 +73,8 @@ public class Main {
         Day02.runDay(); //Day 2
         Day03.runDay(); //Day 3
         Day04.runDay(); //Day 4
+
+        Day06.runDay(); //Day 6
 
 
         long finish = System.nanoTime();
